@@ -33,6 +33,7 @@
              }
          }
      }
+     cout << cnt<<'\n';
      return cnt;
  }
  int compareBW(int y, int x) {
@@ -44,6 +45,7 @@
              }
          }
      }
+     cout << cnt<<'\n'<<'\n';
      return cnt;
  }
  int main() {
@@ -55,8 +57,10 @@
      }
      for (int i = 0; i < n - 7; i++) {
          for (int j = 0; j < m - 7; j++) {
+             /// <summary>
+             /// 두 함수 실행 결과를 비교한 최솟값 중에서도 가장 최소를 찾아야하므로 result와 비교 과정이 한 번 더 필요하다.
              result = min(result,min(compareWB(i, j), compareBW(i, j)));
          }
      }
-     cout << result;
+     cout << '\n'<<'\n'<<'\n'<<result;
 }

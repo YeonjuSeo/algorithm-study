@@ -1,0 +1,2 @@
+C:\Users\82102\Desktop\algorithm-study\algorithm-study\x64\Debug\algorithm-study.exe
+C:\Users\82102\Desktop\algorithm-study\algorithm-study\x64\Debug\algorithm-study.pdb
