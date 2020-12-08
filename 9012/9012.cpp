@@ -8,19 +8,15 @@ int main() {
 	string b;
 	stack<char> data;
 	cin >> T;
+	cin.ignore();
 	for (int i = 0; i < T; i++) {
-		cout << "i는 " << i << "입니다.\n";
 		getline(cin, b);
-		int j = 0, idx=0;
 		int check = 0;
-		while (sizeof(b)/sizeof(char)!=idx) {
-			cout << idx<<'\n';
-			//cout << "b[j]는" <<b[j]<<"입니다\n";
+		for(int j=0;j<b.length();j++){
 			if (b[j] == '(') {
 				data.push(b[j]);
-				j++;
 			}
-			else {
+			else if (b[j]==')') {
 				if (data.empty()) {
 					cout << "NO"<<'\n';
 					check = 1;
@@ -28,12 +24,9 @@ int main() {
 				}
 				else {
 					data.pop();
-					j--;
 				}
 			}
-			idx++;
 		}
-		cout << "while문 탈출\n";
 		if (check == 0) {
 			if (!data.empty()) {
 				cout << "NO\n";
@@ -42,5 +35,6 @@ int main() {
 				cout << "YES\n";
 			}
 		}
+		while (!data.empty()) data.pop();
 	}
 }
