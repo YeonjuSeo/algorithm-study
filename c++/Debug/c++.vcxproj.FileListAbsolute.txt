@@ -1,0 +1,2 @@
+C:\Users\82102\Desktop\algorithm-study\c++\Debug\c++.exe
+C:\Users\82102\Desktop\algorithm-study\c++\Debug\c++.pdb
