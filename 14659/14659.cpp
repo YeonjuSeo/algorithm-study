@@ -17,7 +17,7 @@ int main() {
 			cnt++;
 		}
 	}
-	//(!)마지막 비교를 빼먹음
+	//(!)마지막에 더 큰 봉우리가 나타나지 않았을 경우를 위해 밖에서도 비교해야함
 	result = max(result, cnt);
 	cout << result;
 }
