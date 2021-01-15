@@ -1,30 +1,28 @@
 #include <iostream>
 using namespace std;
 int main() {
-	ios::sync_with_stdio(false); cin.tie(0);
-	int N, temp,digit=0,check=0, sum=0;
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	int N,M, temp,cipher=0,result, flag=0; //M의 분해합이 N, M이 생성자
 	cin >> N;
 	temp = N;
-	while (temp > 0) {
+	while (temp != 0) {
 		temp /= 10;
-		digit++;
+		cipher++;
 	}
-	for (int i = N - 9 * digit; i <= N; i++) {
+	for (int i = N - 9 * cipher; i < N; i++) {
+		result = i;
 		temp = i;
-		sum = temp;
-		cout << "temp는 " << temp << '\n';
-		for (int j = 0; j < digit; j++) {
-			sum = sum + temp % 10;
+		while (temp != 0) {
+			result += temp % 10;
 			temp /= 10;
 		}
-		cout << "sum은 " << sum << '\n';
-		if (sum == N) {
-			cout <<i;
-			check = 1;
+		if (result == N) {
+			flag = 1;
+			cout << i;
 			break;
 		}
 	}
-	if (check == 0) {
-		cout << 0;
+	if (flag == 0) {
+		cout << '0';
 	}
 }
