@@ -1,19 +1,24 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
-long long f[95] = {0};
-long long fibonacci(int n) {
-	if (n == 0 || n == 1) {
-		f[n] = n;
+unsigned long long n, num[100];
+
+unsigned long long fibo(unsigned long long turn) {
+	if (turn==0 || turn==1) {
+		return turn;
 	}
-	else if(f[n]==0) {
-		f[n] = fibonacci(n - 1) + fibonacci(n - 2);
+	if (num[turn] != -1) {
+		return num[turn];
 	}
-	return f[n];
+	return num[turn] = fibo(turn - 1) + fibo(turn - 2);
 }
 
 int main() {
-	ios::sync_with_stdio(false); cin.tie(0);
-	int n;
+	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+	memset(num, -1,sizeof(num));
 	cin >> n;
-	cout << fibonacci(n);
+	for (int i = 0; i <= 90;i++) {
+		cout << fibo(i)<<'\n';
+	}
+	//cout<<fibo(n);
 }
