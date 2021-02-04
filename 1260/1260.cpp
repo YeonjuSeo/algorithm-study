@@ -1,58 +1,47 @@
 #include <iostream>
-#include <stack>
+#include <algorithm>
+#include <vector>
 #include <queue>
 using namespace std;
-int N, M, V;
-int dfs_visited[1005];
-int bfs_visited[1005];
-int graph[1005][1005];
+int N, M, V, ver,edge, temp;
+bool d_visited[1005], b_visited[1005];
+vector<int> graph[1005];
+queue<int> q;
 
 void dfs(int num) {
-	stack<int> s;
-	s.push(num);
-	dfs_visited[num] = 1;
+	d_visited[num] = true;
 	cout << num << ' ';
-	while (!s.empty()){
-		int cur = s.top();
-		bool can_go = false;
-		for (int i = 1; i <= N; i++) {
-			if (!dfs_visited[i] && graph[cur][i]) {
-				dfs_visited[i] = 1;
-				can_go = true;
-				s.push(i);
-				cout << i << ' ';
-				break;
-			}
-		}
-		if (!can_go) {
-			s.pop();
-		}
+	for (int nxt : graph[num]) { //범위기반 for문
+		if (d_visited[nxt]) continue;
+		dfs(nxt);
 	}
 }
+
 void bfs(int num) {
-	queue<int> q;
 	q.push(num);
-	bfs_visited[num] = 1;
+	b_visited[num] = true;
 	while (!q.empty()) {
-		int cur = q.front();
-		cout << cur << ' ';
+		temp = q.front();
 		q.pop();
-		for (int i = 1; i <= N; i++) {
-			if (!bfs_visited[i] && graph[cur][i]) {
-				bfs_visited[i] = 1;
-				q.push(i);
-			}
+		cout <<temp<<' ';
+		for (int nxt : graph[temp]) { //범위기반 for문
+			if (b_visited[nxt]) continue;
+			q.push(nxt);
+			b_visited[nxt]=true;
 		}
 	}
 }
+
 int main() {
 	ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
 	cin >> N >> M >> V;
 	for (int i = 0; i < M; i++) {
-		int n1, n2;
-		cin >> n1 >> n2;
-		graph[n1][n2] = 1;
-		graph[n2][n1] = 1;
+		cin >> ver >> edge;
+		graph[ver].emplace_back(edge);
+		graph[edge].emplace_back(ver);
+	}
+	for (int i = 1; i <= N; i++) {
+		sort(graph[i].begin(), graph[i].end());
 	}
 	dfs(V);
 	cout << '\n';
